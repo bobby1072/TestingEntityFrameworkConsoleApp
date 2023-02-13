@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core
 {
+    [Table("accounts", Schema = "public")]
     public class DbAccount
     {
         public int id { get; set; }

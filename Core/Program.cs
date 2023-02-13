@@ -1,14 +1,11 @@
 ﻿using Core;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection.PortableExecutable;
-using Microsoft.EntityFrameworkCore;
 static class Program
 {
     public static void Main()
     {
-        using (var db = new BlogDbContext())
-        {
             while (true)
+            {
+            using (var db = new BlogDbContext())
             {
                 Console.Clear();
                 Console.WriteLine("1. Add account \n2. Deposit \n3. Withdraw \n\n");
@@ -38,12 +35,14 @@ static class Program
                             var dbAccount = db.accounts.Where(a => a.account_name == accountName).FirstOrDefault();
                             dbAccount.balance += floatBala;
                             db.SaveChanges();
+                            Console.WriteLine("Funds deposited");
                         }
                         else if (choice == 3)
                         {
                             var dbAccount = db.accounts.Where(a => a.account_name == accountName).FirstOrDefault();
                             dbAccount.balance -= floatBala;
                             db.SaveChanges();
+                            Console.WriteLine("Funds withdrawn");
                         }
                         Thread.Sleep(3000);
                     }
